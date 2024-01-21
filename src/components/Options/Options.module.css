@@ -3,7 +3,7 @@
     margin: 20px;
 }
 
-button {
+.buttonGood {
     padding: 10px;
     margin: 5px;
     font-size: 16px;
@@ -14,7 +14,18 @@ button {
     border-radius: 5px;
 }
 
+.buttonNeutral {
+    composes: buttonGood;
+    background-color: #caca14;
+}
 
-button.reset {
+.buttonBad {
+    composes: buttonGood;
+    background-color: #cd0e21;
+}
+
+
+.buttonReset {
+    composes: buttonGood;
     background-color: #ff5722;
 }
