@@ -2,6 +2,7 @@ import { Description } from "./components/Description/Description";
 import { useState, useEffect } from "react";
 import { Feedback } from "./components/Feedback/Feedback";
 import { Options } from "./components/Options/Options";
+import { Notification } from "./components/Notification/Notification";
 
 export const App = () => {
   const [feedback, setFeedback] = useState(() => {
@@ -26,6 +27,7 @@ export const App = () => {
   
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
   const hasFeedback = totalFeedback !== 0;
+  const positive = Math.round(((feedback.good + feedback.neutral) / totalFeedback) * 100);
 
   const handleFeedback = (type) => {
     if (type === 'reset') {
@@ -46,7 +48,9 @@ export const App = () => {
     <div>
       <Description />
       <Options handleFeedback={handleFeedback} hasFeedback={hasFeedback}/>
-      <Feedback feedback={ feedback } />
+        {totalFeedback > 0 ? (
+        <Feedback feedback={feedback} positive={positive} totalFeedback={totalFeedback} />) :
+        (<Notification message="No feedback given" />)}
     </div>
   )
 }
